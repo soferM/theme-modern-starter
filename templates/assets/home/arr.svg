@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="27px" height="47px" viewBox="0 0 27 47" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61 (89581) - https://sketch.com -->
+    <title>形状结合</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="3.061617e-15%" id="linearGradient-1">
+            <stop stop-color="#7CB493" stop-opacity="0.0222628934" offset="0%"></stop>
+            <stop stop-color="#74CC98" stop-opacity="0.739237325" offset="47.5568729%"></stop>
+            <stop stop-color="#85DEAA" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="初稿" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="首页" transform="translate(-570.000000, -3503.000000)" fill="url(#linearGradient-1)">
+            <g id="云系统" transform="translate(-2.000000, 3064.000000)">
+                <g id="拓扑关系图" transform="translate(362.000000, 96.000000)">
+                    <g id="传输箭头" transform="translate(198.000000, 322.661602)">
+                        <path d="M12,38.2345515 L25.5,20.3383976 L39,38.2345515 L31.0588235,38.2345515 C30.9800021,45.2389842 31.3568045,50.8729585 32.1892307,55.1364746 C33.0216568,59.3999906 34.2330897,63.4672983 35.8235294,67.3383976 L15.1764706,67.3383976 C16.7756995,63.3843698 17.9834314,59.3170621 18.7996662,55.1364746 C19.6159011,50.955887 19.9964045,45.3219126 19.9411765,38.2345515 L12,38.2345515 Z" id="形状结合" transform="translate(25.500000, 43.838398) rotate(-360.000000) translate(-25.500000, -43.838398) "></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

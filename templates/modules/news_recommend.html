@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:fragment="news_recommend">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style lang="scss" th:inline="css">
+    .right-c {
+        width: 346px;
+        margin: 30px 0;
+        padding: 0 0 0 15px;
+        float: right;
+        border-left: solid 1px rgba(239, 239, 239, 1);
+        a:hover {
+            text-decoration: none;
+        }
+        .eps-1 {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .eps-2 {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        .big-title {
+            height: 22px;
+            font-size: 16px;
+            font-weight: 400;
+            color: rgba(51, 51, 51, 1);
+            line-height: 22px;
+            margin-bottom: 16px;
+        }
+        .pic-news {
+            width: 330px;
+            height: 180px;
+            position: relative;
+            margin-bottom: 10px;
+            overflow: hidden;
+            &:hover {
+                img {
+                    transform: scale(1.2);
+                }
+            }
+            img {
+                width: 100%;
+                height: 100%;
+                transition: all 0.5s;
+            }
+            .info {
+                width: calc(100% - 40px);
+                /* height: 52px; */
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.7);
+                padding: 8px 20px;
+                .title {
+                    height: 20px;
+                    font-size: 14px;
+                    font-weight: 400;
+                    color: rgba(255, 255, 255, 1);
+                    line-height: 20px;
+                }
+                .date {
+                    height: 16px;
+                    font-size: 12px;
+                    font-weight: 400;
+                    color: rgba(255, 255, 255, 1);
+                    line-height: 16px;
+                    opacity: 0.8;
+                }
+            }
+        }
+        .text-news {
+            width: 290px;
+            /* height: 100px; */
+            background: rgba(246, 248, 250, 1);
+            border: 1px solid rgba(226, 226, 226, 1);
+            padding: 10px 20px;
+            margin-bottom: 10px;
+            transition: all 0.3s;
+            &:hover {
+                box-shadow: 0 0 16px #DFDEDE;
+            }
+            .title {
+                height: 20px;
+                font-size: 14px;
+                font-weight: 400;
+                color: rgba(39, 39, 39, 1);
+                line-height: 20px;
+                margin-bottom: 6px;
+            }
+            .des {
+                height: 34px;
+                font-size: 12px;
+                font-weight: 400;
+                color: rgba(83, 83, 83, 1);
+                line-height: 17px;
+                margin-bottom: 6px;
+            }
+            .date {
+                height: 16px;
+                font-size: 12px;
+                font-weight: 400;
+                color: rgba(117, 137, 163, 1);
+                line-height: 16px;
+            }
+        }
+    }
+  </style>
+  <script th:inline="javascript">
+
+  </script>
+</head>
+
+<body>
+  <div class="right-c">
+    <div class="big-title">
+        新闻推荐
+    </div>
+    <!-- <a th:href="@{/newsdetail-${recommend.id}.html}" th:each="recommend, status : ${news_recommend}">
+        <div class="pic-news" th:if="${status.index < 2}">
+            <img th:src="${recommend.pictures.picture3}">
+            <div class="info">
+                <div class="title eps-1">
+                    [[${recommend.name}]]
+                </div>
+                <div class="date">
+                    [[${recommend.date}]]
+                </div>
+            </div>
+        </div>
+        <div class="text-news" th:if="${ index > 2 }">
+            <div class="title eps-1">
+                [[${recommend.name}]]
+            </div>
+            <div class="des eps-2">
+                [[${recommend.description}]]
+            </div>
+            <div class="date">
+                [[${recommend.date}]]
+            </div>
+        </div>
+    </a> -->
+    <a th:href="@{/newsdetail-119.html}">
+      <div class="pic-news">
+          <img th:src="@{https://www.airdwing.com//upload/images/43f9f28c90aaec849a9306a36e498817.png}">
+          <div class="info">
+              <div class="title eps-1">
+                “机车”结合，降本增效。飞驳空地协同电力巡线系统发布
+              </div>
+              <div class="date">
+                2023-12-26
+              </div>
+          </div>
+      </div>
+  </a>
+  <a th:href="@{/newsdetail-118.html}">
+    <div class="pic-news">
+        <img th:src="@{https://www.airdwing.com//upload/images/43f9f28c90aaec849a9306a36e498817.png}">
+        <div class="info">
+            <div class="title eps-1">
+              生态之翼：大翼飞驳空地协同系统开启“天空地一体化”生态监测新篇章
+            </div>
+            <div class="date">
+              2023-12-19
+            </div>
+        </div>
+    </div>
+</a>
+<a th:href="@{/newsdetail-117.html}">
+  <div class="text-news">
+      <div class="title eps-1">
+        多维跨域，相得益彰—大翼飞驳F1空地协同系统正式发布
+      </div>
+      <div class="des eps-2">
+          在人类文明的发展历史中，逐步掌握了对地面装备和系统平台的驾驭技术，并广泛应用于人类的日常生活、生产等方面。19世纪发明了现代飞行器后，人类终于实现了驾驭空中装备翱翔天空的梦想。将可利用空间从地面二维扩展到空间三维，为生活和生产带来效率提升的同时，开启了对未来二三维空间跨域协同的想象。\r\n\r\n随着传感器、人工智能等技术的不断发展，无人系统以其智能化、非接触式、环境及空间的适应能力、超强的耐受性等特点受到越来越多的关注。目前被证实可以批量应用的无人系统为特定环境中运行的自动驾驶车辆和网格化部署的无人值守的自动机巢。无人车和无人机（UGV、UAV）之间多个无人系统的跨域协同，凭借其二三维空间融合应用等诸多优势成为当前无人系统领域研究和应用的热点。\r\n\r\n⼤翼航空自2015年1月成立起来，以成为“⾏业领先的⽆⼈系统数据平台”为企业愿景，紧跟行业前沿技术⽅向，八年来一直着力于研发⽆⼈机系统与自动驾驶、AI视觉识别、地理信息、车联网等领域的深度融合，提供⽆⼈机、无人车、⽆⼈船、⽔下机器⼈等数据接⼊和无人系统集成。本次借助大疆行业小型自动机巢的发布，联合汽车厂家、昇腾等合作伙伴，推出无人系统行业第一款无人车+无人机机巢跨域融合的量产产品：大翼飞驳F1空地协同系统。飞驳F1具有集成空地巡检任务、地面空中路径规划、决策和推理能力等功能，可以在没有（特定场景）或有限的人工参与的情况下完成通用巡检任务。\r\n\r\n\r\n\r\n系统配置信息如下：\r\n\r\n系统名称：飞驳 F1空地协同无人系统\r\n\r\n包含\r\n●五菱定制版新能源汽车\r\n●车载喊话器\r\n●大疆机巢 2 （含M3D/M3TD无人机）\r\n●大翼Y3 4G机载控制模块\r\n●昇腾边缘节点（车载端模块）\r\n●风筝线边缘计算飞驳版（车载离线共驾控制系统）\r\n●风筝线云系统飞驳版1年（如需接入私有部署版请联系销售）\r\n●大疆 RC Pro 地面端设备\r\n●场区内车辆自动驾驶系统（自动驾驶版提供）\r\n\r\n \r\n\r\n系统亮点：\r\n\r\n空地跨域协同，飞驶向未来\r\n\r\n无人车和无人机（UGV、UAV）之间无人系统的跨域协同，实现二维、三维空间内跨域信息融合、自主飞行、协同控制、人机协同等跨域协同关键技术融合。无人车依然风筝线。在风筝线飞驳版中可实时查看无人车与无人机状态与监控画面，并远程控制，也可直接在系统中远程喊话。\r\n车顶即为起降场，不需要平整地面，亦可防止吹起浮灰减少无人机寿命，架高设计对地面人员更加安全。\r\n\r\n \r\n\r\n车规级配置，有人无人随心切换\r\n\r\n可乘坐2-4人，舒适安全的驾驶与乘坐体验。\r\n自动驾驶版可在无人乘坐下场区内远程控制。\r\n\r\n \r\n\r\n人机共驾，车机直接控制无人机\r\n无网依旧可以控制。风筝线边缘节点模组提供离线版共驾控制系统，可在车机上直接控制机巢和无人机，当恢复服务器连接后补传作业数据。\r\n\r\n \r\n\r\n国标快充，一体供电\r\n31,900Wh超大磷酸铁锂电池，无人车作业距离可达200km，无人机作业半径10公里。\r\n机场一体化供电，无需其他电源，可在无人车行驶中给无人机机巢充电。\r\n支持国标充电桩，快充1小时可从30%充至80%。\r\n\r\n \r\n\r\n昇腾异构计算，5G连接\r\n20 TOPS AI算力，选配4G或5G模块无线传输，云边协同。\r\n\r\n\r\n\r\nAI助力，空地感知全无人辅助决策系统\r\n专为不同行业定制的场景化AI，无人车自动发现问题并告警，联动无人机立刻起飞进行跟踪并多角度拍摄。可广泛应用于公共安全、应急消防、环保监测等行业。\r\n \r\n\r\n完善售后体系\r\n新能源汽车厂商遍布全国的4S店为您提供车辆基础维保服务，风筝线客户服务为您提供专业技术支持，大疆机巢由各地供货大疆经销商提供运维服务。\r\n\r\n\r\n注：\r\n自动驾驶仅限在人流较少的封闭道路行驶，限速25km/h。车辆停稳后无人机机巢找平，设置定位后启动无人机机巢。\r\n\r\n大翼飞驳产品线今后将支持更多新能源自动驾驶品牌车辆。\r\n\r\n\r\n \r\n\r\n\r\n除了飞驳F1空地无人协同系统，大翼航空还同步推出飞驳G1空地协同系统改装车版。利用客户现有的皮卡车和其他适合改装的车辆，由大翼航空上门定制化安装大疆自动机巢和风筝线飞驳版，花费较少的费用实现二维、三维空间跨域信息融合。\r\n\r\n\r\n\r\n飞驳F1应用场景：\r\n1.封闭场区内空地协同自动巡检\r\n\r\n自动驾驶无人车搭载自动机巢实现场区内全无人化自动值守和自动巡检，无人车按规划路径自动驾驶过程中发现异常情况可以触发自动机巢内多旋翼无人机实施周边巡逻，结合现场布设的多个固定监控设备实施区域内联合监测，开展无死角巡检监控，无人系统可以24小时值守和巡检，提升巡逻监测的时空密度。适用于大型场区、库区、景区和自然保护区巡检等。\r\n\r\n\r\n\r\n2.沿线人机协同跨域巡检\r\n\r\n人机协同版由一人驾驶车辆搭配自动机巢进行沿线巡检，到达指定点位时启动自动机巢按预先规划的航线自动飞行巡检，人员在车内无需操控无人机，只进行监看。无人机任务完成自动返回充电并上传巡检成果，车辆继续前往下一个任务点。线路超过100公里时可以设置充电站，极大的降低油耗和人工成本。适用于电力塔基和线路巡检、石油、天然气管道、光伏电站巡检和高速公路、河道水务巡查。\r\n\r\n \r\n\r\n3.前置备勤和处突取证\r\n\r\n改装车搭载自动机巢到达前置备勤点或冲突地点，设置临时充电站后，飞驳F1空地协同无人系统可以自动开展地面监控、喊话、飞行巡查、实景三维建模，并利用风筝线系统实现跨尺度融合，最终生成现场多维度实景模型，可标注地表物理信息、人、车、飞机和可通行区域等信息，为现场指挥与控制提供便利。适用于应急救援、处突取证和搜捕。\r\n\r\n\r\n\r\n⼤翼航空坚持“开放、专注、服务”的宗旨，始终以满足用户需求为中心。风筝线系统用户总量逾万名，用户遍布应急消防、安防、生态环境、水利应用和电力/油气巡检、城管、海事等领域。飞驳F1空地协同无人系统现接受预定，并向全国招募飞驳F1空地协同无人系统省级经销合作伙伴，为各行业跨域无人系统、城市运行中心提供安全可靠、便捷高效的“伙伴化”工具及综合解决方案，助力实时全态势感知数字化平台的建设。\r\n\r\n大翼飞驳系列产品具体信息请咨询大翼航空营销部门。\r\n\r\n联系方式\r\n\r\n电话：025-69973885，17715285107，18938683239\r\n\r\n邮箱：business@dwi.ng\r\n\r\n\r\n\r\n
+      </div>
+      <div class="date">
+        2023-11-08
+      </div>
+  </div>
+</a>
+<a th:href="@{/newsdetail-116.html}">
+  <div class="text-news">
+      <div class="title eps-1">
+        大翼航空荣获深圳龙华2023低空经济产业峰会“最佳路演奖”
+      </div>
+      <div class="des eps-2">
+        10月23日下午，深圳市龙华区2023年低空经济产业峰会在捷顺国际会议中心举行，来自低空经济、航空运输、无人机产业等领域的国内外行业专家、企业代表、金融机构代表齐聚一堂，深入探讨低空经济发展方向和重点，助推龙华打造粤港澳大湾区低空经济产业创新发展高地和低空经济先导区。
+        在国家低空经济融合创新研究中心的指导下，由龙华区率先探索的《龙华区低空经济高质量发展评价指标》（简称《指标》）在本次峰会上发布。作为国内首个低空经济高质量发展指标体系，《指标》具有前瞻性、科学性、全面性，将成为低空经济行业趋势的风向标、产业发展的晴雨表、政策制定的指南针。
+        在“低空+”圆桌对话环节，各行业专家、企业代表、金融机构代表共同探讨低空经济产业的发展方向和重点。代表们纷纷表示，随着科技的发展和应用，低空经济必将在未来的城市发展中发挥更大的作用，期待龙华区低空经济产业的进一步发展，让更多的企业加入这个充满机遇的领域。
+        峰会期间还举行了龙华区首批低空经济应用场景的企业路演。据悉，2023年9月，龙华区广发“英雄帖”，发布了5大类14个低空经济应用场景，鼓励全社会企业到龙华“揭榜挂帅”。本次参加路演的11家企业，就是从意向承接这些场景的报名者中挑选出来的代表。最终，全球鹰（深圳）无人机有限公司、杭州迅蚁网络科技有限公司、中山福昆航空科技有限公司荣获“最佳创新力奖”，深圳市翼飞鸿天无人机科技有限公司、深圳市多翼创新科技有限公司、华鹏飞股份有限公司、深圳市天空领域实业发展有限公司荣获“最具人气奖”，普宙科技有限公司、深圳高度创新技术有限公司、南京牧星人航空科技有限公司、南京大翼航空科技有限公司荣获“最佳路演奖”。        
+      </div>
+      <div class="date">
+        2023-10-26
+      </div>
+  </div>
+</a>
+</div>
+
+</body>
+
+</html>

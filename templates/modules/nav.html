@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="navFragment">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style lang="scss" th:inline="css">
+      #nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 9999;
+        left: 0;
+        right: 0;
+        color: #fff;
+        min-width: 1200px;
+        transition: all 0.4s ease-out;
+
+        &:hover {
+          background-color: #131415;
+        }
+
+        background: var(--backgroundColor);
+
+        .navbar {
+          height: 60px;
+          padding: 0;
+          position: relative;
+          display: flex;
+          align-items: center;
+
+          li.active {
+            .menu-sub {
+              a {
+                border-bottom: 2px solid #337dfe;
+              }
+            }
+          }
+
+          li:hover {
+            .dropdown-menu {
+              display: block;
+            }
+
+            .menu-sub {
+              a {
+                border-bottom: 2px solid #337dfe;
+              }
+            }
+
+            img {
+              transform: rotate(180deg);
+            }
+          }
+        }
+        .navbar-expand {
+          flex-flow: row nowrap;
+          justify-content: flex-start;
+          ul {
+            list-style: none;
+          }
+        }
+
+        .logo {
+          width: 118px;
+          height: 56px;
+          /* background: url(../../assets/logo.png) no-repeat; */
+          background: url([[@{/assets/logo.png}]]) no-repeat;
+          background-size: contain;
+          margin: 0 30px;
+          cursor: pointer;
+        }
+
+        a {
+          font-size: 14px;
+          color: #fff;
+          text-decoration: none;
+        }
+
+        .menu-sub {
+          margin: 0 16px;
+
+          img {
+            width: 16px;
+            transition: transform 0.2s;
+          }
+
+          a {
+            cursor: pointer;
+            padding-bottom: 2px;
+
+            &:hover {
+              border-bottom: 2px solid #337dfe;
+            }
+          }
+        }
+
+        .dropdown-toggle::after {
+          content: none;
+        }
+
+        .dropdown-menu {
+          background-color: #131415;
+          margin: 0;
+        }
+
+        .dropdown-item {
+          padding: 8px 30px;
+
+          &:hover {
+            background: #1e2022;
+          }
+
+          a {
+            color: rgba(255, 255, 255, 0.6);
+
+            &:hover {
+              color: rgba(255, 255, 255, 1);
+            }
+          }
+        }
+
+        .dropdown-item.current-active {
+          a {
+            color: rgba(255, 255, 255, 1);
+          }
+        }
+      }
+
+      #menu-bg {
+        max-width: 1920px;
+      }
+    </style>
+    <script th:inline="javascript">
+      const menulist = [
+        {
+          title: "产品",
+          path: "production",
+          sub: [
+            {
+              title: "风筝线无人机管理系统",
+              path: "",
+            },
+            {
+              title: "  飞驳空地协同系统",
+              path: "flyback",
+            },
+          ],
+        },
+        {
+          title: "行业应用",
+          path: "application",
+          sub: [
+            {
+              title: "消防救援",
+              path: "fire",
+            },
+            {
+              title: "公共安全",
+              path: "public",
+            },
+            {
+              title: "生态环境保护",
+              path: "environment",
+            },
+            {
+              title: "城市管理",
+              path: "city",
+            },
+            {
+              title: "农业自然资源普查",
+              path: "natural",
+            },
+            {
+              title: "防汛抢险",
+              path: "flood",
+            },
+            {
+              title: "公共卫生",
+              path: "publicHealth",
+            },
+            {
+              title: "矿业应用",
+              path: "mining",
+            },
+            {
+              title: "建筑行业",
+              path: "construction",
+            },
+            {
+              title: "交通管理",
+              path: "traffic",
+            },
+          ],
+        },
+        {
+          title: "服务",
+          path: "service",
+          sub: [
+            {
+              title: "无忧保障",
+              path: "insurance",
+            },
+            {
+              title: "执照培训",
+              path: "train",
+            },
+            {
+              title: "航拍测绘",
+              path: "photo",
+              sub: [
+                {
+                  title: "二维正射镶嵌图服务",
+                  path: "2d",
+                },
+                {
+                  title: "全景漫游",
+                  path: "panoramic",
+                },
+                {
+                  title: "三维建模",
+                  path: "3d",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          title: "硬件",
+          path: "hardware",
+          sub: [
+            {
+              title: "硬件设备",
+              path: "hardware",
+            },
+            {
+              title: "无忧保障",
+              path: "insurance",
+            },
+            {
+              title: "执照培训",
+              path: "train",
+            },
+          ],
+        },
+        {
+          title: "新闻中心",
+          path: "news",
+        },
+        {
+          title: "关于我们",
+          path: "about",
+        },
+      ];
+
+      console.log("menulist", menulist);
+    </script>
+  </head>
+
+  <body>
+    <!-- <div id="nav" x-ref="navRef" th:styleappend="{ '--backgroundColor': ${y > 0 ? '#131415' : 'transparent'} }"> -->
+    <div id="nav" x-ref="navRef">
+      <div id="menu-bg">
+        <nav class="navbar navbar-expand">
+          <!-- <div class="logo" th:href="@{/index}" /> -->
+          <div class="logo"></div>
+
+          <div class="navbar-collapse collapse">
+            <ul class="navbar-nav mr-auto">
+              <!-- <li
+                  th:each="item, status : menulist"
+                  th:if="${!item.sub}"
+                  th:item-index="${status.index}"
+                  th:classappend="${item.active ? 'active': ''}"
+                  class="nav-item"
+                >
+                  <div class="nav-link menu-sub">
+                    <div th:href="@{/item.path}">
+                      <a th:if="${item.path}" th:text="@{item.path}"> ${ item.title } </a>
+                      <a th:if="${!item.path}" th:text="@{https://www.kitebeam.com}"> ${ item.title } </a>
+                    </div>
+                  </div>
+                </li>
+                <li th:if="${item.sub}" class="nav-item dropdown" th:classappend="${item.active ? 'active': ''}">
+                  <div class="nav-link dropdown-toggle menu-sub" role="button" data-hover="dropdown">
+                    <a> {{ item.title }} </a>
+                    <img src="../../assets/home/arr_down.png" alt="" />
+                  </div>
+                  <div class="dropdown-menu">
+                    <div
+                      th:each="subItem, status : ${item.sub}"
+                      th:item-index="${status.index}"
+                      th:classappend="[${subItem.active ? 'current-active': ''}, 'dropdown-item']"
+                      th:href="@{/subItem.path}"
+                    >
+                      ${ subItem.title }
+                    </div>
+                  </div>
+                </li> -->
+              <li class="nav-item">
+                <div class="nav-link menu-sub">
+                  <div th:href="@{/news}">
+                    <a>新闻中心</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </body>
+</html>
