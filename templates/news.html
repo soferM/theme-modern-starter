@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+  <head>
+    <style lang="scss" th:inline="css">
+      body {
+        margin: 0;
+      }
+      #app {
+        font-family: Helvetica Neue, Helvetica, Tahoma, Arial, PingFang SC, Hiragino Sans GB, Heiti SC, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: #2c3e50;
+        min-width: 1260px;
+        min-height: 100%;
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <th:block th:replace="modules/nav :: navFragment">
+      </th:block>
+      <th:block th:replace="modules/news :: newsFragment">
+      </th:block>
+      <th:block th:replace="modules/footer :: footerFragment">
+      </th:block>
+    </div>
+  </body>
+</html>

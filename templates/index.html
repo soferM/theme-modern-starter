@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
   <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <style lang="scss" th:inline="css">
       body {
         margin: 0;
       }
       #app {
-        font-family: Helvetica Neue, Helvetica, Tahoma, Arial, PingFang SC, Hiragino Sans GB, Heiti SC, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
+        font-family: Helvetica Neue, Helvetica, Tahoma, Arial, PingFang SC, Hiragino Sans GB, Heiti SC, Microsoft YaHei,
+          WenQuanYi Micro Hei, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
@@ -16,15 +18,2353 @@
         position: relative;
       }
     </style>
+    <style lang="scss" th:inline="css">
+      .page-index {
+        #carousel-2 {
+          .carousel-indicators {
+            bottom: 110px;
+          }
+        }
+      }
+    </style>
+
+    <style lang="scss" th:inline="css">
+      .eps-1 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .eps-2 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+
+      .page-index {
+        min-width: 1200px;
+        margin: 0 auto;
+        text-align: left;
+
+        a {
+          text-decoration: none;
+        }
+
+        &.scrolled {
+          .banner {
+            z-index: -1;
+          }
+        }
+
+        .nav-c {
+          width: 100%;
+          height: 60px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+        }
+
+        .body-c {
+          background-color: #fff;
+        }
+
+        .qr-c {
+          text-align: center;
+
+          img {
+            width: 80px !important;
+            height: 80px !important;
+          }
+
+          div {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #fff;
+            line-height: 17px;
+          }
+        }
+
+        .arr-c-1 {
+          display: none;
+        }
+
+        .arr-c-2 {
+          display: inline;
+        }
+
+        .arr-down {
+          width: 16px !important;
+          height: 16px !important;
+          display: inline-block !important;
+          transition: all 0.5s;
+          margin: 0 0 4px !important;
+        }
+
+        .down-c {
+          position: absolute;
+          top: 30px;
+          left: 0;
+          right: 0;
+          width: 100%;
+          height: auto;
+          background-color: #09388b;
+          padding: 8px 10px;
+          display: none;
+          font-size: 12px;
+          line-height: 17px;
+          text-align: left;
+          opacity: 0.69;
+          color: #fff;
+          display: none;
+        }
+
+        .down-btn {
+          position: relative;
+          user-select: none;
+          cursor: pointer;
+        }
+
+        .down-btn:hover {
+          color: #fff !important;
+          background: linear-gradient(270deg, rgba(95, 155, 236, 1) 0%, rgba(60, 106, 185, 1) 100%) !important;
+
+          .arr-c-1 {
+            display: inline !important;
+          }
+
+          .arr-c-2 {
+            display: none !important;
+          }
+        }
+
+        .down-active {
+          color: #fff !important;
+          background: linear-gradient(270deg, rgba(95, 155, 236, 1) 0%, rgba(60, 106, 185, 1) 100%) !important;
+
+          .arr-down {
+            transform: rotate(180deg);
+          }
+
+          .arr-c-1 {
+            display: inline !important;
+          }
+
+          .arr-c-2 {
+            display: none !important;
+          }
+        }
+
+        .mainer {
+          width: 1200px;
+          height: 100%;
+          margin: 0 auto;
+          position: relative;
+        }
+
+        .mainer-2 {
+          min-width: 1200px;
+          margin: 0 auto;
+        }
+
+        .banner {
+          width: 100%;
+          height: 80vh;
+          min-height: 500px;
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          transition: all 0.5s;
+          text-align: center;
+
+          .now {
+            .banner-pic {
+              transform: translateY(0px);
+              opacity: 1;
+            }
+
+            .banner-title {
+              transform: translateY(0px);
+              opacity: 1;
+            }
+
+            .banner-tips {
+              transform: translateY(0px);
+              opacity: 1;
+            }
+          }
+
+          .banner-title {
+            font-size: 40px;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 1);
+            line-height: 56px;
+            text-align: center;
+            transform: translateY(-500px);
+            opacity: 0;
+            transition: all 0.5s;
+            position: absolute;
+            width: 1200px;
+            left: 50%;
+            top: 20%;
+            margin-left: -600px;
+            z-index: 1;
+          }
+
+          .banner-tips {
+            margin-top: 3vh;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: translateY(-400px);
+            opacity: 0;
+            transition: all 0.5s;
+            position: absolute;
+            width: 1200px;
+            left: 50%;
+            top: 27%;
+            margin-left: -600px;
+            z-index: 1;
+
+            .tip-item {
+              height: 0px;
+              font-size: 28px;
+              font-weight: bold;
+              color: rgba(255, 255, 255, 0.6);
+              line-height: 40px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              span {
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                background: rgba(23, 153, 255, 1);
+                border-radius: 50%;
+                margin-right: 15px;
+                margin-left: 32px;
+              }
+            }
+          }
+
+          .banner-pic {
+            height: 100%;
+            width: auto;
+            transform: translateY(200px);
+            opacity: 0;
+            transition: all 0.5s;
+          }
+
+          #carousel {
+            height: 100%;
+
+            &:hover {
+              .carousel-control-prev {
+                display: flex;
+              }
+
+              .carousel-control-next {
+                display: flex;
+              }
+            }
+          }
+
+          .carousel-indicators {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 15;
+            display: -ms-flexbox;
+            display: -webkit-box;
+            display: flex;
+            -ms-flex-pack: center;
+            -webkit-box-pack: center;
+            justify-content: center;
+            padding-left: 0;
+            margin-right: 15%;
+            margin-left: 15%;
+            list-style: none;
+            > li {
+              -webkit-box-sizing: content-box;
+              box-sizing: content-box;
+              -ms-flex: 0 1 auto;
+              -webkit-box-flex: 0;
+              flex: 0 1 auto;
+              width: 30px;
+              height: 3px;
+              margin-right: 3px;
+              margin-left: 3px;
+              text-indent: -999px;
+              cursor: pointer;
+              background-color: #fff;
+              background-clip: padding-box;
+              border-top: 10px solid transparent;
+              border-bottom: 10px solid transparent;
+              opacity: .5;
+              -webkit-transition: opacity .6s ease;
+              transition: opacity .6s ease;
+            }
+            .inner {
+              width: 0;
+              height: 100%;
+              transition: width 6s linear;
+            }
+
+            .now {
+              .inner {
+                width: 100%;
+                background: #1860dc;
+              }
+            }
+          }
+
+          .carousel-inner {
+            height: 100%;
+            background-color: #090e1a;
+          }
+
+          .carousel-item {
+            height: 100%;
+            background-position: center bottom;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-color: #fff;
+
+            position: relative;
+            display: none;
+            float: left;
+            width: 100%;
+            margin-right: -100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transition: -webkit-transform .6s ease-in-out;
+            -webkit-transition: -webkit-transform .6s ease-in-out;
+            transition: transform .6s ease-in-out;
+            transition: transform .6s ease-in-out, -webkit-transform .6s ease-in-out;
+            transition: transform .6s ease-in-out, -webkit-transform .6s ease-in-out;
+          }
+          .active {
+            display: block;
+          }
+
+          .carousel-control-prev {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 1;
+            -ms-flex-align: center;
+            -webkit-box-align: center;
+            align-items: center;
+            -ms-flex-pack: center;
+            -webkit-box-pack: center;
+            justify-content: center;
+            width: 15%;
+            color: #fff;
+            text-align: center;
+            opacity: .5;
+            -webkit-transition: opacity .15s ease;
+            transition: opacity .15s ease;
+            .carousel-control-prev-icon {
+              display: inline-block;
+              width: 20px;
+              height: 20px;
+              background: no-repeat 50% / 100% 100%;
+              background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath d='M5.25 0l-4 4 4 4 1.5-1.5L4.25 4l2.5-2.5L5.25 0z'/%3e%3c/svg%3e");
+            }
+            .sr-only {
+              display: none;
+            }
+          }
+
+          .carousel-control-next {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 1;
+            -ms-flex-align: center;
+            -webkit-box-align: center;
+            align-items: center;
+            -ms-flex-pack: center;
+            -webkit-box-pack: center;
+            justify-content: center;
+            width: 15%;
+            color: #fff;
+            text-align: center;
+            opacity: .5;
+            -webkit-transition: opacity .15s ease;
+            transition: opacity .15s ease;
+            .carousel-control-next-icon {
+              display: inline-block;
+              width: 20px;
+              height: 20px;
+              background: no-repeat 50% / 100% 100%;
+              background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath d='M2.75 0l-1.5 1.5L3.75 4l-2.5 2.5L2.75 8l4-4-4-4z'/%3e%3c/svg%3e");
+            }
+            .sr-only {
+              display: none;
+            }
+          }
+
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        .banner-c {
+          width: 100%;
+          height: 80vh;
+          min-height: 500px;
+          transition: all 0.1s;
+        }
+
+        .solutions {
+          padding-top: 60px;
+
+          .title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333333;
+            line-height: 48px;
+            text-align: center;
+            margin-bottom: 10px;
+          }
+
+          .s-title {
+            font-size: 16px;
+            color: #8d98a3;
+            line-height: 24px;
+            margin-bottom: 46px;
+            text-align: center;
+          }
+
+          .solutions-c {
+            width: 1200px;
+            height: 260px;
+
+            .solution-item {
+              width: 300px;
+              height: 260px;
+              float: left;
+
+              img {
+                width: 300px;
+                height: 200px;
+                border-right: 0;
+                transform: translateY(50px);
+                transition: all 0.5s;
+
+                &.animate {
+                  transform: translateY(0px);
+                  animation: solution 2s;
+                  animation-direction: alternate;
+                  animation-iteration-count: infinite;
+                  animation-delay: 2s;
+                }
+              }
+
+              .name {
+                height: 60px;
+                line-height: 60px;
+                text-align: center;
+                font-size: 16px;
+                color: #333333;
+                transform: translateY(50px);
+                transition: all 0.5s;
+                font-weight: bold;
+
+                &.animate {
+                  transform: translateY(0px);
+                }
+              }
+            }
+          }
+        }
+
+        .applications {
+          margin-top: 60px;
+          background: #051021;
+
+          .application-item {
+            height: 424px;
+            position: relative;
+
+            .num {
+              width: 100px;
+              height: 100px;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              margin-top: -50px;
+              margin-left: -50px;
+              perspective: 500;
+              -webkit-perspective: 500;
+              transform-style: preserve-3d;
+
+              &.animate {
+                .num-right {
+                  transform: rotateY(0deg);
+
+                  img {
+                    opacity: 1;
+                  }
+                }
+              }
+
+              .num-left {
+                width: 50px;
+                height: 100px;
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                overflow: hidden;
+              }
+
+              .num-right {
+                width: 50px;
+                height: 100px;
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                overflow: hidden;
+                transform: rotateY(-180deg);
+                transform-origin: left top;
+                transition: all 1s ease-in-out;
+                transform-style: preserve-3d;
+
+                img {
+                  opacity: 0;
+                  transition: all 0.1s;
+                  transition-delay: 0.5s;
+                }
+              }
+
+              .num-bg {
+                filter: blur(50px);
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, rgba(42, 97, 193, 0.6) 0%, rgba(51, 125, 254, 0.6) 100%);
+              }
+
+              img {
+                width: 50px;
+                height: 100px;
+                position: absolute;
+                top: 0px;
+                right: 0px;
+              }
+            }
+
+            .application {
+              width: 50%;
+              height: 424px;
+              float: left;
+              overflow: hidden;
+            }
+
+            .pic {
+              width: 100%;
+              height: 100%;
+              background-color: #051021;
+              background-size: cover;
+              background-repeat: no-repeat;
+              background-position: center center;
+              transition: all 1s;
+
+              &:hover {
+                transform: scale(1.1);
+              }
+            }
+
+            .pic-1 {
+              background-image: url([[@{/assets/home/application_1.png}]]);
+            }
+
+            .pic-2 {
+              background-image: url([[@{/assets/home/application_2.png}]]);
+            }
+
+            .pic-3 {
+              background-image: url([[@{/assets/home/application_3.png}]]);
+            }
+
+            .pic-4 {
+              background-image: url([[@{/assets/home/application_4.png}]]);
+            }
+
+            .text {
+              padding: 60px 0 60px 95px;
+              min-width: 600px;
+              width: calc(50% - 100px);
+              height: 304px;
+
+              .title {
+                height: 36px;
+                font-size: 24px;
+                font-weight: bold;
+                color: #fff;
+                line-height: 36px;
+                margin-bottom: 60px;
+                transition: all 0.5s;
+                transform: translateY(50px);
+
+                &.animate {
+                  transform: translateY(0px);
+                }
+              }
+
+              .intro {
+                font-size: 14px;
+                color: #fff;
+                line-height: 24px;
+                width: 505px;
+                height: 148px;
+                opacity: 0.8;
+                transition: all 0.5s;
+                transform: translateY(50px);
+
+                &.animate {
+                  transform: translateY(0px);
+                }
+              }
+            }
+
+            .text-left {
+              padding: 60px 95px 60px 5px;
+              width: calc(50% - 100px);
+              height: 304px;
+              .title {
+                width: 500px;
+                float: right;
+              }
+
+              .intro {
+                opacity: 0.8;
+                clear: both;
+                width: 500px;
+                float: right;
+              }
+
+              .btn-c {
+                width: 500px;
+                float: right;
+              }
+            }
+
+            .btn-c {
+              margin-top: 20px;
+              clear: both;
+
+              div {
+                width: 144px;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                color: #fff;
+                font-size: 14px;
+                border-radius: 1px;
+                float: left;
+                margin-right: 20px;
+                cursor: pointer;
+              }
+
+              .detail {
+                background-color: #337dfe;
+
+                &:hover {
+                  background-color: #1d65e1;
+                }
+
+                &:active {
+                  background-color: #0b44a8;
+                }
+              }
+
+              .uav {
+                background: rgba(47, 79, 142, 0.3);
+                border: 1px solid rgba(47, 79, 142, 1);
+
+                &:hover {
+                  background-color: rgba(47, 79, 142, 0.6);
+                }
+
+                &:active {
+                  background-color: rgba(47, 79, 142, 0.9);
+                }
+              }
+            }
+          }
+        }
+
+        .system {
+          position: relative;
+          z-index: 1;
+
+          .title {
+            margin-top: 60px;
+            margin-bottom: 48px;
+            font-size: 32px;
+            color: #333333;
+            text-align: center;
+            line-height: 48px;
+            font-weight: bold;
+          }
+
+          .banner-title {
+            text-align: center;
+            color: #fff;
+            height: 36px;
+            line-height: 36px;
+            background: linear-gradient(
+              270deg,
+              rgba(76, 100, 143, 0) 0%,
+              rgba(26, 50, 92, 1) 50%,
+              rgba(77, 101, 144, 0) 100%
+            );
+          }
+
+          .system-c {
+            width: 100%;
+            height: 956px;
+            background-image: url([[@{/assets/home/round.svg}]]);
+            background-size: 100% 100%;
+
+            .toper {
+              width: 100%;
+              height: 211px;
+              padding-left: 32px;
+
+              .toper-item {
+                width: 160px;
+                height: 211px;
+                float: left;
+                margin: 0 16px;
+
+                .btn-d {
+                  width: 110px;
+                  height: 30px;
+                  line-height: 30px;
+                  background: linear-gradient(270deg, rgba(132, 158, 195, 1) 0%, rgba(77, 101, 144, 1) 100%);
+                  font-weight: bold;
+                  font-size: 16px;
+                  color: #fff;
+                  text-align: center;
+                  margin: 27px auto 0;
+                  cursor: pointer;
+                  position: relative;
+                }
+
+                .pic {
+                  width: 160px;
+                  height: 140px;
+                  margin: 7px auto 0;
+                }
+              }
+            }
+          }
+
+          .footer {
+            padding-left: 72px;
+            height: 171px;
+
+            .footer-item {
+              float: left;
+
+              img {
+                width: 160px;
+                height: 140px;
+                margin: 18px auto 0;
+              }
+            }
+
+            .app-list {
+              width: 300px;
+              padding-top: 40px;
+              margin-left: 35px;
+              font-size: 0px;
+
+              .app-item {
+                cursor: pointer;
+                display: inline-block;
+                width: 120px;
+                height: 30px;
+                background: linear-gradient(224deg, rgba(132, 158, 195, 1) 0%, rgba(77, 101, 144, 1) 100%);
+                font-weight: bold;
+                font-size: 16px;
+                color: #fff;
+                text-align: center;
+                line-height: 30px;
+                margin: 0 15px 30px 15px;
+              }
+            }
+
+            .api-list {
+              padding-top: 40px;
+              margin-left: 35px;
+
+              .api-item {
+                height: 24px;
+                font-size: 16px;
+                font-weight: bold;
+                color: #092965;
+                line-height: 24px;
+                margin-bottom: 9px;
+              }
+            }
+          }
+
+          .round-c {
+            width: 100%;
+            height: 570px;
+            position: relative;
+
+            .center-1 {
+              width: 184px;
+              height: 278px;
+              position: absolute;
+              top: -7px;
+              left: 505px;
+              animation: center1 0.8s;
+              animation-direction: alternate;
+              animation-iteration-count: infinite;
+              animation-timing-function: linear;
+            }
+
+            .center-2 {
+              width: 172px;
+              height: 253px;
+              position: absolute;
+              top: 55px;
+              left: 574px;
+              animation: center2 0.8s;
+              animation-delay: 0.4s;
+              animation-direction: alternate;
+              animation-iteration-count: infinite;
+              animation-timing-function: linear;
+            }
+
+            .step {
+              width: 100px;
+              height: 30px;
+              text-align: center;
+              line-height: 30px;
+              font-size: 16px;
+              color: #333;
+              background: #cfe1ff;
+              position: absolute;
+              cursor: pointer;
+            }
+
+            .step-1 {
+              left: 210px;
+              top: 270px;
+            }
+
+            .step-2 {
+              left: 230px;
+              top: 360px;
+            }
+
+            .step-3 {
+              left: 310px;
+              top: 438px;
+            }
+
+            .step-4 {
+              left: 467px;
+              top: 486px;
+            }
+
+            .step-5 {
+              left: 653px;
+              top: 486px;
+            }
+
+            .step-6 {
+              left: 795px;
+              top: 434px;
+            }
+
+            .step-7 {
+              left: 870px;
+              top: 357px;
+            }
+
+            .step-8 {
+              left: 890px;
+              top: 272px;
+            }
+
+            .arr {
+              width: 22px;
+              height: 38px;
+              background-size: 100% 100%;
+              background-image: url([[@{/assets/home/arr.svg}]]);
+              margin-top: -19px;
+              margin-left: -11px;
+            }
+
+            .arr-1 {
+              animation: arr1 1.5s;
+              animation-iteration-count: infinite;
+              animation-timing-function: linear;
+              position: absolute;
+              top: 0;
+              left: 125px;
+            }
+
+            .arr-2 {
+              animation: arr2 1.5s;
+              animation-iteration-count: infinite;
+              animation-timing-function: linear;
+              position: absolute;
+              top: 0;
+              left: 333px;
+            }
+
+            .arr-3 {
+              animation: arr3 1.5s;
+              animation-iteration-count: infinite;
+              animation-timing-function: linear;
+              position: absolute;
+              top: 0;
+              left: 534px;
+            }
+
+            .arr-4 {
+              animation: arr4 1.5s;
+              animation-iteration-count: infinite;
+              animation-timing-function: linear;
+              position: absolute;
+              top: 0;
+              left: 702px;
+            }
+
+            .arr-5 {
+              animation: arr5 1.5s;
+              animation-iteration-count: infinite;
+              animation-timing-function: linear;
+              position: absolute;
+              top: 0;
+              left: 906px;
+            }
+
+            .arr-6 {
+              animation: arr6 1.5s;
+              animation-iteration-count: infinite;
+              animation-timing-function: linear;
+              position: absolute;
+              top: 0;
+              left: 1052px;
+            }
+
+            .arr-7 {
+              animation: arr7 1.5s;
+              animation-iteration-count: infinite;
+              animation-timing-function: linear;
+              position: absolute;
+              top: 570px;
+              left: 180px;
+            }
+
+            .arr-8 {
+              animation: arr8 1.5s;
+              animation-iteration-count: infinite;
+              animation-timing-function: linear;
+              position: absolute;
+              top: 570px;
+              left: 317px;
+            }
+
+            .arr-9 {
+              animation: arr9 1.5s;
+              animation-iteration-count: infinite;
+              animation-timing-function: linear;
+              position: absolute;
+              top: 570px;
+              left: 918px;
+            }
+
+            .arr-10 {
+              animation: arr10 1.5s;
+              animation-iteration-count: infinite;
+              animation-timing-function: linear;
+              position: absolute;
+              top: 570px;
+              left: 956px;
+            }
+          }
+        }
+
+        .cloud-c {
+          width: 100%;
+          height: 100px;
+          margin-top: -126px;
+          background-image: url([[@{/assets/home/cloud_bg.png}]]);
+          background-size: 100% 100%;
+          background-position: center top;
+          padding-top: 186px;
+
+          .cloud-btn {
+            width: 180px;
+            height: 40px;
+            line-height: 40px;
+            color: #fff;
+            background: #337dfe;
+            border-radius: 1px;
+            margin: 0 auto;
+            text-align: center;
+            cursor: pointer;
+
+            &:hover {
+              background: #266eeb;
+            }
+
+            &:active {
+              background: #1860dc;
+            }
+
+            .btn-pic {
+              width: 16px;
+              height: 16px;
+              margin-bottom: 4px;
+            }
+          }
+        }
+
+        .news-c {
+          width: 100%;
+          min-width: 1200px;
+          height: 597px;
+          background-image: url([[@{/assets/home/news_bg.jpg}]]);
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+
+        .news {
+          padding-top: 32px;
+
+          .big-title {
+            height: 80px;
+            line-height: 80px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #fff;
+            border-bottom: solid 1px rgba(202, 223, 255, 0.2);
+            margin-bottom: 48px;
+
+            .more {
+              margin-top: 20px;
+              height: 60px;
+              float: right;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              position: relative;
+              cursor: pointer;
+              text-decoration: none;
+
+              .arr-r-2 {
+                display: none;
+              }
+
+              &:hover {
+                span {
+                  color: #fff !important;
+                }
+
+                .arr-r {
+                  display: none;
+                }
+
+                .arr-r-2 {
+                  display: inline-block;
+                }
+              }
+
+              span {
+                font-size: 14px;
+                color: rgba(255, 255, 255, 0.6);
+                line-height: 24px;
+                height: 24px;
+                font-weight: bold;
+                width: 60px;
+                position: absolute;
+                right: 12px;
+                top: 18px;
+              }
+
+              img {
+                width: 16px;
+                height: 16px;
+                position: absolute;
+                top: 21px;
+                right: 0px;
+              }
+            }
+          }
+
+          .news-left {
+            width: 396px;
+            height: 376px;
+            float: left;
+
+            &:hover {
+              .news-hot {
+                background-color: rgba(41, 59, 93, 0.5);
+              }
+            }
+
+            .pic {
+              width: 396px;
+              height: 256px;
+              overflow: hidden;
+
+              img {
+                width: 100%;
+                height: 100%;
+                transition: all 0.5s;
+
+                &:hover {
+                  transform: scale(1.2);
+                }
+              }
+            }
+
+            .news-hot {
+              width: 396px;
+              height: 120px;
+              padding: 14px 13px;
+              border-top: 0;
+              background-color: rgba(41, 59, 93, 0.3);
+
+              .name {
+                width: 100%;
+                font-size: 16px;
+                font-weight: bold;
+                color: #fff;
+                line-height: 22px;
+                height: 44px;
+                margin-bottom: 8px;
+              }
+
+              .des {
+                width: 100%;
+                font-size: 14px;
+                color: rgba(255, 255, 255, 0.6);
+                line-height: 20px;
+                height: 40px;
+              }
+            }
+          }
+
+          .news-right {
+            float: right;
+
+            .news-list {
+              .news-item {
+                width: 796px;
+                height: 120px;
+                margin-bottom: 8px;
+                cursor: pointer;
+                transition: all 0.3s;
+
+                &:hover {
+                  background-color: rgba(41, 59, 93, 0.5);
+                }
+
+                .date {
+                  width: 116px;
+                  height: 120px;
+                  line-height: 120px;
+                  text-align: center;
+                  float: left;
+
+                  .day {
+                    font-size: 32px;
+                    color: #fff;
+                  }
+
+                  .mounth {
+                    font-size: 16px;
+                    color: #fff;
+                  }
+                }
+
+                .info {
+                  width: 678px;
+                  float: left;
+                  padding: 12px 20px 12px 0;
+
+                  .title {
+                    font-size: 16px;
+                    color: #fff;
+                    margin-bottom: 6px;
+                    font-weight: bold;
+                  }
+
+                  .text {
+                    color: rgba(255, 255, 255, 0.6);
+                    font-size: 14px;
+                    line-height: 20px;
+                    height: 40px;
+                  }
+
+                  .tags {
+                    float: left;
+
+                    .tag {
+                      float: left;
+                      margin-right: 15px;
+
+                      img {
+                        width: 14px;
+                        height: 14px;
+                        margin-right: 5px;
+                      }
+
+                      span {
+                        color: #9db0ca;
+                        font-size: 12px;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      @keyframes solution {
+        0% {
+          transform: translateY(0px);
+        }
+        100% {
+          transform: translateY(5px);
+        }
+      }
+
+      @keyframes center1 {
+        0% {
+          top: -7px;
+          left: 505px;
+        }
+        100% {
+          top: 7px;
+          left: 505px;
+        }
+      }
+
+      @keyframes center2 {
+        0% {
+          top: 55px;
+          left: 574px;
+        }
+        100% {
+          top: 65px;
+          left: 574px;
+        }
+      }
+
+      @keyframes arr1 {
+        0% {
+          top: 0;
+          left: 125px;
+          transform: rotate(180deg);
+        }
+        13% {
+          top: 42px;
+          left: 138px;
+          transform: rotate(170deg);
+        }
+        25% {
+          top: 91px;
+          left: 182px;
+          transform: rotate(120deg);
+        }
+        50% {
+          top: 149px;
+          left: 279px;
+          transform: rotate(100deg);
+        }
+        75% {
+          top: 162px;
+          left: 380px;
+          transform: rotate(110deg);
+        }
+        88% {
+          top: 177px;
+          left: 440px;
+          transform: rotate(130deg);
+        }
+        100% {
+          top: 217px;
+          left: 486px;
+          transform: rotate(150deg);
+        }
+      }
+
+      @keyframes arr2 {
+        0% {
+          top: 0;
+          left: 333px;
+          transform: rotate(180deg);
+        }
+        25% {
+          top: 70px;
+          left: 351px;
+          transform: rotate(160deg);
+        }
+        50% {
+          top: 112px;
+          left: 373px;
+          transform: rotate(120deg);
+        }
+        75% {
+          top: 152px;
+          left: 430px;
+          transform: rotate(140deg);
+        }
+        88% {
+          top: 187px;
+          left: 469px;
+          transform: rotate(150deg);
+        }
+        100% {
+          top: 215px;
+          left: 487px;
+          transform: rotate(160deg);
+        }
+      }
+
+      @keyframes arr3 {
+        0% {
+          top: 0;
+          left: 534px;
+          transform: rotate(180deg);
+        }
+        25% {
+          top: 60px;
+          left: 537px;
+          transform: rotate(180deg);
+        }
+        50% {
+          top: 115px;
+          left: 527px;
+          transform: rotate(190deg);
+        }
+        75% {
+          top: 157px;
+          left: 506 p;
+          transform: rotate(200deg);
+        }
+        100% {
+          top: 215px;
+          left: 487px;
+          transform: rotate(190deg);
+        }
+      }
+
+      @keyframes arr4 {
+        0% {
+          top: 0;
+          left: 702px;
+          transform: rotate(140deg);
+        }
+        25% {
+          top: 49px;
+          left: 743px;
+          transform: rotate(150deg);
+        }
+        50% {
+          top: 106px;
+          left: 767px;
+          transform: rotate(180deg);
+        }
+        75% {
+          top: 160px;
+          left: 759px;
+          transform: rotate(180deg);
+        }
+        100% {
+          top: 236px;
+          left: 747px;
+          transform: rotate(180deg);
+        }
+      }
+
+      @keyframes arr5 {
+        0% {
+          top: 0;
+          left: 906px;
+          transform: rotate(200deg);
+        }
+        25% {
+          top: 63px;
+          left: 873px;
+          transform: rotate(210deg);
+        }
+        50% {
+          top: 102px;
+          left: 838px;
+          transform: rotate(220deg);
+        }
+        75% {
+          top: 147px;
+          left: 786px;
+          transform: rotate(210deg);
+        }
+        100% {
+          top: 236px;
+          left: 747px;
+          transform: rotate(200deg);
+        }
+      }
+
+      @keyframes arr6 {
+        0% {
+          top: 0;
+          left: 1052px;
+          transform: rotate(220deg);
+        }
+        25% {
+          top: 80px;
+          left: 985px;
+          transform: rotate(230deg);
+        }
+        50% {
+          top: 122px;
+          left: 894px;
+          transform: rotate(250deg);
+        }
+        75% {
+          top: 161px;
+          left: 806px;
+          transform: rotate(230deg);
+        }
+        100% {
+          top: 236px;
+          left: 747px;
+          transform: rotate(190deg);
+        }
+      }
+
+      @keyframes arr7 {
+        0% {
+          top: 390px;
+          left: 470px;
+          transform: rotate(200deg);
+        }
+        25% {
+          top: 447px;
+          left: 438px;
+          transform: rotate(220deg);
+        }
+        50% {
+          top: 484px;
+          left: 380px;
+          transform: rotate(230deg);
+        }
+        75% {
+          top: 506px;
+          left: 275px;
+          transform: rotate(245deg);
+        }
+        100% {
+          top: 568px;
+          left: 180px;
+          transform: rotate(230deg);
+        }
+      }
+
+      @keyframes arr8 {
+        0% {
+          top: 390px;
+          left: 470px;
+          transform: rotate(200deg);
+        }
+        25% {
+          top: 447px;
+          left: 438px;
+          transform: rotate(220deg);
+        }
+        50% {
+          top: 484px;
+          left: 380px;
+          transform: rotate(230deg);
+        }
+        75% {
+          top: 526px;
+          left: 336px;
+          transform: rotate(215deg);
+        }
+        100% {
+          top: 568px;
+          left: 317px;
+          transform: rotate(180deg);
+        }
+      }
+
+      @keyframes arr9 {
+        0% {
+          top: 390px;
+          left: 707px;
+          transform: rotate(170deg);
+        }
+        25% {
+          top: 459px;
+          left: 768px;
+          transform: rotate(125deg);
+        }
+        50% {
+          top: 474px;
+          left: 849px;
+          transform: rotate(100deg);
+        }
+        75% {
+          top: 519px;
+          left: 881px;
+          transform: rotate(160deg);
+        }
+        100% {
+          top: 567px;
+          left: 915px;
+          transform: rotate(150deg);
+        }
+      }
+
+      @keyframes arr10 {
+        0% {
+          top: 390px;
+          left: 707px;
+          transform: rotate(170deg);
+        }
+        25% {
+          top: 459px;
+          left: 768px;
+          transform: rotate(125deg);
+        }
+        50% {
+          top: 474px;
+          left: 849px;
+          transform: rotate(100deg);
+        }
+        75% {
+          top: 517px;
+          left: 917px;
+          transform: rotate(160deg);
+        }
+        100% {
+          top: 569px;
+          left: 956px;
+          transform: rotate(140deg);
+        }
+      }
+    </style>
+
+    <script th:inline="javascript">
+      window.addEventListener('scroll', (value) => {
+        if (window.scrollY) {
+          document.querySelector('.banner').style.zIndex = -1;
+        } else {
+          document.querySelector('.banner').style.zIndex = 0;
+        }
+      });
+    </script>
   </head>
   <body>
     <div id="app">
-      <th:block th:replace="modules/nav :: navFragment">
-      </th:block>
-      <th:block th:replace="modules/news :: newsFragment">
-      </th:block>
-      <th:block th:replace="modules/footer :: footerFragment">
-      </th:block>
+      <th:block th:replace="modules/nav :: navFragment"> </th:block>
+      <!-- <div class="page-index">
+        <div class="banner">
+          <div id="carousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+            <ol class="carousel-indicators">
+              <li
+                th:each="pic, status : ${home_banner}"
+                :key="${status.index}"
+                data-target="#carousel"
+                :data-slide-to="${status.index}"
+                th:classappend="${ status.index === 0 ? 'active' : '' }"
+              >
+                <div class="inner" />
+              </li>
+            </ol>
+            <div class="carousel-inner">
+              <div
+                th:each="pic, status : ${home_banner}"
+                class="carousel-item"
+                th:classappend="${ index === 0 ? 'active' : '' }"
+                th:styleappend="${pic.picture_bg!==''} ? 'backgroundImage: `url(${pic.picture_bg})`':''"
+                th:attr="onlick=|href_on(${pic.href_url})|"
+              >
+                <div th:if="${pic.characteristic.extra1}" class="banner-title">[[${pic.title}]]</div>
+                <div class="banner-tips">
+                  <div
+                    th:each="textItem, status : ${pic.characteristic}"
+                    th:if="${pic.characteristic.extra1}"
+                    class="tip-item"
+                  >
+                    <span />[[${textItem}]]
+                  </div>
+                </div>
+                <img class="banner-pic" th:src="${pic.picture}" />
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true" />
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true" />
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-c" />
+        <div class="banner-c" />
+        <div class="body-c">
+          <div class="news-c">
+            <div class="mainer">
+              <div class="news">
+                <div class="big-title">
+                  新闻动态
+                  <a href="/news" class="more">
+                    <span>查看更多</span>
+                    <img class="arr-r" th:src="@{/assets/home/arr_r.png}" />
+                    <img class="arr-r-2" th:src="@{/assets/home/arr_r_2.png}" />
+                  </a>
+                </div>
+                <div class="news-left">
+                  <div id="carousel-2" class="carousel slide" data-ride="carousel" data-interval="3000">
+                    <ul class="carousel-indicators">
+                      <li
+                        th:each="pic, status : ${news_hot}"
+                        data-target="#carousel-2"
+                        :data-slide-to="${status.index}"
+                        th:classappend="${ status.index === 0 ? 'active' : '' }"
+                      >
+                        <div class="inner" />
+                      </li>
+                    </ul>
+                    <div class="carousel-inner">
+                      <div
+                        th:each="pic, status : ${news_hot}"
+                        class="carousel-item"
+                        th:classappend="{ status.index === 0 ? 'active' : '' }"
+                      >
+                        <div class="pic">
+                          <img th:src="${pic.pictures.picture1}" />
+                        </div>
+                        <a th:href="`/newsdetail-${pic.id}`">
+                          <div class="news-hot">
+                            <div class="name eps-2">[[${pic.name}]]</div>
+                            <div class="des eps-2">[[${pic.description}]]</div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="news-right">
+                  <div class="news-list">
+                    <a th:each="hot_item, status : ${home_hot}" th:href="`/newsdetail-${hot_item.id}`">
+                      <div class="news-item">
+                        <div class="date">
+                          <span class="day">[[${hot_item.day}]]</span>
+                          <span class="mounth">[[${hot_item.month}]]</span>
+                        </div>
+                        <div class="info">
+                          <div class="title eps-1">[[${hot_item.name}]]</div>
+                          <div class="text eps-2">[[${hot_item.description}]]</div>
+                          <div class="tags">
+                            <a th:if="${hot_item.source_url}" th:href="${hot_item.source_url}" target="_blank">
+                              <div class="tag">
+                                <img th:src="@{/assets/home/link.png}" />
+                                <span>[[${hot_item.source}]]</span>
+                              </div>
+                            </a>
+                            <div th:if="${hot_item.source_url === ''}" class="tag">
+                              <img th:src="@{/assets/home/link.png}" />
+                              <span>[[${hot_item.source}]]</span>
+                            </div>
+                            <div th:each="tag_id, status : ${hot_item.tag_ids}" class="tag">
+                              <img th:src="@{/assets/home/tag.png}" />
+                              <span>[[${tag_id}]]</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mainer">
+            <div class="solutions">
+              <div class="title">行业应用方案</div>
+              <div class="s-title">大翼航空致力于行业无人机服务，为您提供定制化解决方案</div>
+              <div class="solutions-c">
+                <div class="solution-item">
+                  <img class="pic-animate" th:src="@{/assets/home/fire-solution.png}" />
+                  <div class="name title-animate">消防救援</div>
+                </div>
+                <div class="solution-item">
+                  <img class="pic-animate" th:src="@{/assets/home/safe-solution.png}" />
+                  <div class="name title-animate">公共安全</div>
+                </div>
+                <div class="solution-item">
+                  <img class="pic-animate" th:src="@{/assets/home/enviroment-solution.png}" />
+                  <div class="name title-animate">生态环境保护</div>
+                </div>
+                <div class="solution-item">
+                  <img class="pic-animate" th:src="@{/assets/home/city-solution.png}" />
+                  <div class="name title-animate">城市管理</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="applications">
+            <div class="mainer-2">
+              <div class="application-item">
+                <div class="application">
+                  <div class="pic pic-1" />
+                </div>
+                <div class="application text">
+                  <div id="title-1" class="title">消防救援无人机应用</div>
+                  <div id="intro-1" class="intro">
+                    随着城市化进程的不断加快,大翼航空拥有多机型无人机和自主知识产权风筝线™云无人机管理平台，助力消防救援在“断网、断路、断电”极端恶劣条件下的应急保障能力；以人为本，促进消防职业化、降低危险系数。
+                  </div>
+                  <div class="btn-c">
+                    <a href="/application/security">
+                      <div class="detail">查看案例</div>
+                    </a>
+                    <a href="/hardware">
+                      <div class="uav">无人机设备</div>
+                    </a>
+                  </div>
+                </div>
+                <div class="num num-animate-1">
+                  <div class="num-left">
+                    <div class="num-bg" />
+                    <img th:src="@{/assets/home/num_0.png}" />
+                  </div>
+                  <div class="num-right">
+                    <div class="num-bg" />
+                    <img th:src="@{/assets/home/num_1.png}" />
+                  </div>
+                </div>
+              </div>
+              <div class="application-item">
+                <div class="application text text-left">
+                  <div id="title-2" class="title">公共安全无人机应用</div>
+                  <div id="intro-2" class="intro">
+                    无人机作为可单兵作战的多功能集成平台，搭载高清摄像、热成像、喊话器、防暴负载等，配合风筝线管理平台实时传输AR视频，创建全景照片漫游系统，应用于公共安全管理、交通管理、技术侦查、反恐安保、指挥辅助等方面。即可定点打击也可区域监控，全方位助力社会安全稳定发展。
+                  </div>
+                  <div class="btn-c">
+                    <a href="/application/rescue">
+                      <div class="detail">查看案例</div>
+                    </a>
+                    <a href="/hardware">
+                      <div class="uav">无人机设备</div>
+                    </a>
+                  </div>
+                </div>
+                <div class="application">
+                  <div class="pic pic-2" />
+                </div>
+                <div class="num num-animate-2">
+                  <div class="num-left">
+                    <div class="num-bg" />
+                    <img th:src="@{/assets/home/num_0.png}" />
+                  </div>
+                  <div class="num-right">
+                    <div class="num-bg" />
+                    <img th:src="@{/assets/home/num_2.png}" />
+                  </div>
+                </div>
+              </div>
+              <div class="application-item">
+                <div class="application">
+                  <div class="pic pic-3" />
+                </div>
+                <div class="application text">
+                  <div id="title-3" class="title">生态环境保护无人机应用</div>
+                  <div id="intro-3" class="intro">
+                    传统的环境监测多采用在重要污染区域进行定点监控的方式，在环境监测、应急、监察执法过程中，经常受到地形、环境、交通等不利因素限制而不能获取现场图像和其他气体、水体数据。大翼航空提供的无人机和风筝线管控平台对于环境监察是创新型执法工具。
+                  </div>
+                  <div class="btn-c">
+                    <a th:href="@{/application/environment}">
+                      <div class="detail">查看案例</div>
+                    </a>
+                    <a th:href="@{/hardware}">
+                      <div class="uav">无人机设备</div>
+                    </a>
+                  </div>
+                </div>
+                <div class="num num-animate-3">
+                  <div class="num-left">
+                    <div class="num-bg" />
+                    <img th:src="@{/assets/home/num_0.png}" />
+                  </div>
+                  <div class="num-right">
+                    <div class="num-bg" />
+                    <img th:src="@{/assets/home/num_3.png}" />
+                  </div>
+                </div>
+              </div>
+              <div class="application-item">
+                <div class="application text text-left">
+                  <div id="title-4" class="title">城市管理无人机应用</div>
+                  <div id="intro-4" class="intro">
+                    无人机在城市管理中发挥关键作用，执行城市监测、违章监管、违规经营监测、交通管理、应急响应等任务，维护市容市貌。风筝线管理平台提供实时数据，利用大翼航空提供的无人机，对重点区域和路段进行巡查，根据工作需求开展信息采集、高空喊话、照明等作业，及时反馈巡查中发现的重要问题，便于在城市管理过程中发挥其机动灵活的作用。
+                  </div>
+                  <div class="btn-c">
+                    <a href="/application/agriculture">
+                      <div class="detail">查看案例</div>
+                    </a>
+                    <a href="/hardware">
+                      <div class="uav">无人机设备</div>
+                    </a>
+                  </div>
+                </div>
+                <div class="application">
+                  <div class="pic pic-4" />
+                </div>
+                <div class="num num-animate-4">
+                  <div class="num-left">
+                    <div class="num-bg" />
+                    <img th:src="@{/assets/home/num_0.png}" />
+                  </div>
+                  <div class="num-right">
+                    <div class="num-bg" />
+                    <img th:src="@{/assets/home/num_4.png}" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mainer">
+            <div class="system">
+              <div class="title">风筝线无人机云管理系统</div>
+              <div class="banner-title">无人机与低空数据管理平台</div>
+              <div class="system-c">
+                <div class="toper">
+                  <div class="toper-item">
+                    <div class="btn-d">无人机</div>
+                    <img class="pic" th:src="@{/assets/home/system_1.png}" />
+                  </div>
+                  <div class="toper-item">
+                    <div class="btn-d down-btn">
+                      地面站
+                      <img class="arr-down" th:src="@{/assets/home/arr_down.png}" />
+                      <div class="down-c">风筝线APP支持的无人机或厂商地面站集成</div>
+                    </div>
+                    <img class="pic" th:src="@{/assets/home/system_2.png}" />
+                  </div>
+                  <div class="toper-item">
+                    <div class="btn-d">第三方平台</div>
+                    <img class="pic" th:src="@{/assets/home/system_3.png}" />
+                  </div>
+                  <div class="toper-item">
+                    <div class="btn-d">云交换系统</div>
+                    <img class="pic" th:src="@{/assets/home/system_4.png}" />
+                  </div>
+                  <div class="toper-item">
+                    <div class="btn-d">气象数据</div>
+                    <img class="pic" th:src="@{/assets/home/system_5.png}" />
+                  </div>
+                  <div class="toper-item">
+                    <div class="btn-d down-btn">
+                      航空地图
+                      <img class="arr-down" th:src="@{/assets/home/arr_down.png}" />
+                      <div class="down-c">包含禁飞区、限飞区等数据</div>
+                    </div>
+                    <img class="pic" th:src="@{/assets/home/system_6.png}" />
+                  </div>
+                </div>
+                <div class="round-c">
+                  <div class="arr arr-1" />
+                  <div class="arr arr-2" />
+                  <div class="arr arr-3" />
+                  <div class="arr arr-4" />
+                  <div class="arr arr-5" />
+                  <div class="arr arr-6" />
+                  <div class="arr arr-7" />
+                  <div class="arr arr-8" />
+                  <div class="arr arr-9" />
+                  <div class="arr arr-10" />
+                  <img class="center-1" th:src="@{/assets/home/center_1.png}" />
+                  <img class="center-2" th:src="@{/assets/home/center_2.png}" />
+                  <div class="step step-1">航线规划</div>
+                  <div class="step step-2">实时监控</div>
+                  <div class="step step-3">历史回溯</div>
+                  <div class="step step-4 down-btn">
+                    成果管理
+                    <span class="arr-c-1">
+                      <img class="arr-down arr-down-1" th:src="@{/assets/home/arr_down.png}" />
+                    </span>
+                    <span class="arr-c-2">
+                      <img class="arr-down arr-down-2" th:src="@{/assets/home/arr_down_black.png}" />
+                    </span>
+                    <div class="down-c">支持全景，正射镶嵌图，三维模型的上传、展示、标注与分享</div>
+                  </div>
+                  <div class="step step-5 down-btn">
+                    AR辅助
+                    <span class="arr-c-1">
+                      <img class="arr-down arr-down-1" th:src="@{/assets/home/arr_down.png}" />
+                    </span>
+                    <span class="arr-c-2">
+                      <img class="arr-down arr-down-2" th:src="@{/assets/home/arr_down_black.png}" />
+                    </span>
+                    <div class="down-c">地图与视频结合，可直接在视频上测量距离、面积</div>
+                  </div>
+                  <div class="step step-6 down-btn">
+                    风险告警
+                    <span class="arr-c-1">
+                      <img class="arr-down arr-down-1" th:src="@{/assets/home/arr_down.png}" />
+                    </span>
+                    <span class="arr-c-2">
+                      <img class="arr-down arr-down-2" th:src="@{/assets/home/arr_down_black.png}" />
+                    </span>
+                    <div class="down-c">接近禁飞区与多架无人机接近</div>
+                  </div>
+                  <div class="step step-7">加密分享</div>
+                  <div class="step step-8">团队管理</div>
+                </div>
+                <div class="footer">
+                  <div class="footer-item">
+                    <img th:src="@{/assets/home/system_7.png}" />
+                  </div>
+                  <div class="footer-item">
+                    <img th:src="@{/assets/home/system_8.png}" />
+                  </div>
+                  <div class="footer-item">
+                    <div class="app-list">
+                      <div class="app-item">Web版</div>
+                      <div class="app-item">H5手机版</div>
+                      <div class="app-item down-btn">
+                        APP客户端
+                        <img class="arr-down" th:src="@{/assets/home/arr_down.png}" />
+                        <div class="down-c">支持安卓5.1+</div>
+                      </div>
+                      <div class="app-item down-btn">
+                        微信小程序
+                      </div>
+                    </div>
+                  </div>
+                  <div class="footer-item">
+                    <div class="api-list">
+                      <div class="api-item">国标视频平台级联</div>
+                      <div class="api-item">API接口</div>
+                      <div class="api-item">定制化</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="cloud-c">
+            <div class="mainer">
+              <a href="https://www.kitebeam.com/" target="_blank">
+                <div class="cloud-btn">
+                  访问风筝线云系统
+                  <img class="btn-pic" th:src="@{/assets/home/cloud_btn.png}" />
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <div class="page-index">
+        <div class="banner">
+          <div id="carousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+            <ol class="carousel-indicators">
+              <li
+                data-target="#carousel"
+                :data-slide-to="0"
+              >
+                <div class="inner" />
+              </li>
+              <li
+                data-target="#carousel"
+                :data-slide-to="1"
+              >
+                <div class="inner" />
+              </li>
+              <li
+                data-target="#carousel"
+                :data-slide-to="2"
+              >
+                <div class="inner" />
+              </li>
+              <li
+                data-target="#carousel"
+                :data-slide-to="3"
+              >
+                <div class="inner" />
+              </li>
+              <li
+                data-target="#carousel"
+                :data-slide-to="4"
+              >
+                <div class="inner" />
+              </li>
+              <li
+                data-target="#carousel"
+                :data-slide-to="5"
+              >
+                <div class="inner" />
+              </li>
+            </ol>
+            <div class="carousel-inner">
+              <div
+                class="carousel-item now active"
+                style="background-image: url('https://www.airdwing.com//upload/images/e657e72d88fb75ebab19915e89fc027d.png');"
+                th:attr="onlick=|href_on(${pic.href_url})|"
+              >
+                <div class="banner-title">新品发布</div>
+                <div class="banner-tips"></div>
+                <img class="banner-pic" src="https://www.airdwing.com//upload/images/bc175db28cfcf4240e07b382aba3cee2.png" />
+              </div>
+              <div
+                class="carousel-item"
+                style="background-image: url('https://www.airdwing.com//upload/images/e9a51bb3a5e67ee5a2426a62492ba53e.png');"
+                th:attr="onlick=|href_on(${pic.href_url})|"
+              >
+                <div class="banner-title">大疆机场</div>
+                <div class="banner-tips"></div>
+                <img class="banner-pic" src="https://www.airdwing.com//upload/images/3899697e42d15a93f31ee0f3550c7a9e.png" />
+              </div>
+              <div
+                class="carousel-item"
+                style="background-image: url('https://www.airdwing.com//upload/images/71b6a1962991a7ea627f2708a2a663e6.png');"
+                th:attr="onlick=|href_on(${pic.href_url})|"
+              >
+                <div class="banner-title">DJI MAVIC 3 CLASSIC</div>
+                <div class="banner-tips"></div>
+                <img class="banner-pic" src="https://www.airdwing.com//upload/images/1cc2e6834d7297402ee4b7a0a35d0686.png" />
+              </div>
+              <div
+                class="carousel-item"
+                style="background-image: url('https://www.airdwing.com//upload/images/4fdfbc861678d3f9cf632deb208b2804.png');"
+                th:attr="onlick=|href_on(${pic.href_url})|"
+              >
+                <div class="banner-title">FC30</div>
+                <div class="banner-tips"></div>
+                <img class="banner-pic" src="https://www.airdwing.com//upload/images/980057abfd8ded9b8fead38d8bc514e3.png" />
+              </div>
+              <div
+                class="carousel-item"
+                style="background-image: url('https://www.airdwing.com//upload/images/42ee334d8543755847274a7bf8edd48e.png');"
+                th:attr="onlick=|href_on(${pic.href_url})|"
+              >
+                <div class="banner-title">风筝线系统国产化</div>
+                <div class="banner-tips"></div>
+                <img class="banner-pic" src="https://www.airdwing.com//upload/images/de6a20d5d2aa5b5082cbffc97c013252.png" />
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-c"></div>
+        <div class="banner-c"></div>
+        <div class="body-c">
+          <div class="mainer">
+            <div class="solutions">
+              <div class="title">行业应用方案</div>
+              <div class="s-title">大翼航空致力于行业无人机服务，为您提供定制化解决方案</div>
+              <div class="solutions-c">
+                <div class="solution-item">
+                  <img class="pic-animate" th:src="@{/assets/home/fire-solution.png}" />
+                  <div class="name title-animate">消防救援</div>
+                </div>
+                <div class="solution-item">
+                  <img class="pic-animate" th:src="@{/assets/home/safe-solution.png}" />
+                  <div class="name title-animate">公共安全</div>
+                </div>
+                <div class="solution-item">
+                  <img class="pic-animate" th:src="@{/assets/home/enviroment-solution.png}" />
+                  <div class="name title-animate">生态环境保护</div>
+                </div>
+                <div class="solution-item">
+                  <img class="pic-animate" th:src="@{/assets/home/city-solution.png}" />
+                  <div class="name title-animate">城市管理</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="applications">
+            <div class="mainer-2">
+              <div class="application-item">
+                <div class="application">
+                  <div class="pic pic-1"></div>
+                </div>
+                <div class="application text">
+                  <div id="title-1" class="title">消防救援无人机应用</div>
+                  <div id="intro-1" class="intro">
+                    随着城市化进程的不断加快,大翼航空拥有多机型无人机和自主知识产权风筝线™云无人机管理平台，助力消防救援在“断网、断路、断电”极端恶劣条件下的应急保障能力；以人为本，促进消防职业化、降低危险系数。
+                  </div>
+                  <div class="btn-c">
+                    <a href="/application/security">
+                      <div class="detail">查看案例</div>
+                    </a>
+                    <a href="/hardware">
+                      <div class="uav">无人机设备</div>
+                    </a>
+                  </div>
+                </div>
+                <div class="num num-animate-1">
+                  <div class="num-left">
+                    <div class="num-bg"></div>
+                    <img th:src="@{/assets/home/num_0.png}" />
+                  </div>
+                  <div class="num-right">
+                    <div class="num-bg">></div>
+                    <img th:src="@{/assets/home/num_1.png}" />
+                  </div>
+                </div>
+              </div>
+              <div class="application-item">
+                <div class="application text text-left">
+                  <div id="title-2" class="title">公共安全无人机应用</div>
+                  <div id="intro-2" class="intro">
+                    无人机作为可单兵作战的多功能集成平台，搭载高清摄像、热成像、喊话器、防暴负载等，配合风筝线管理平台实时传输AR视频，创建全景照片漫游系统，应用于公共安全管理、交通管理、技术侦查、反恐安保、指挥辅助等方面。即可定点打击也可区域监控，全方位助力社会安全稳定发展。
+                  </div>
+                  <div class="btn-c">
+                    <a href="/application/rescue">
+                      <div class="detail">查看案例</div>
+                    </a>
+                    <a href="/hardware">
+                      <div class="uav">无人机设备</div>
+                    </a>
+                  </div>
+                </div>
+                <div class="application">
+                  <div class="pic pic-2"></div>
+                </div>
+                <div class="num num-animate-2">
+                  <div class="num-left">
+                    <div class="num-bg"></div>
+                    <img th:src="@{/assets/home/num_0.png}" />
+                  </div>
+                  <div class="num-right">
+                    <div class="num-bg"></div>
+                    <img th:src="@{/assets/home/num_2.png}" />
+                  </div>
+                </div>
+              </div>
+              <div class="application-item">
+                <div class="application">
+                  <div class="pic pic-3"></div>
+                </div>
+                <div class="application text">
+                  <div id="title-3" class="title">生态环境保护无人机应用</div>
+                  <div id="intro-3" class="intro">
+                    传统的环境监测多采用在重要污染区域进行定点监控的方式，在环境监测、应急、监察执法过程中，经常受到地形、环境、交通等不利因素限制而不能获取现场图像和其他气体、水体数据。大翼航空提供的无人机和风筝线管控平台对于环境监察是创新型执法工具。
+                  </div>
+                  <div class="btn-c">
+                    <a th:href="@{/application/environment}">
+                      <div class="detail">查看案例</div>
+                    </a>
+                    <a th:href="@{/hardware}">
+                      <div class="uav">无人机设备</div>
+                    </a>
+                  </div>
+                </div>
+                <div class="num num-animate-3">
+                  <div class="num-left">
+                    <div class="num-bg"></div>
+                    <img th:src="@{/assets/home/num_0.png}" />
+                  </div>
+                  <div class="num-right">
+                    <div class="num-bg"></div>
+                    <img th:src="@{/assets/home/num_3.png}" />
+                  </div>
+                </div>
+              </div>
+              <div class="application-item">
+                <div class="application text text-left">
+                  <div id="title-4" class="title">城市管理无人机应用</div>
+                  <div id="intro-4" class="intro">
+                    无人机在城市管理中发挥关键作用，执行城市监测、违章监管、违规经营监测、交通管理、应急响应等任务，维护市容市貌。风筝线管理平台提供实时数据，利用大翼航空提供的无人机，对重点区域和路段进行巡查，根据工作需求开展信息采集、高空喊话、照明等作业，及时反馈巡查中发现的重要问题，便于在城市管理过程中发挥其机动灵活的作用。
+                  </div>
+                  <div class="btn-c">
+                    <a href="/application/agriculture">
+                      <div class="detail">查看案例</div>
+                    </a>
+                    <a href="/hardware">
+                      <div class="uav">无人机设备</div>
+                    </a>
+                  </div>
+                </div>
+                <div class="application">
+                  <div class="pic pic-4"></div>
+                </div>
+                <div class="num num-animate-4">
+                  <div class="num-left">
+                    <div class="num-bg"></div>
+                    <img th:src="@{/assets/home/num_0.png}" />
+                  </div>
+                  <div class="num-right">
+                    <div class="num-bg"></div>
+                    <img th:src="@{/assets/home/num_4.png}" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mainer">
+            <div class="system">
+              <div class="title">风筝线无人机云管理系统</div>
+              <div class="banner-title">无人机与低空数据管理平台</div>
+              <div class="system-c">
+                <div class="toper">
+                  <div class="toper-item">
+                    <div class="btn-d">无人机</div>
+                    <img class="pic" th:src="@{/assets/home/system_1.png}" />
+                  </div>
+                  <div class="toper-item">
+                    <div class="btn-d down-btn">
+                      地面站
+                      <img class="arr-down" th:src="@{/assets/home/arr_down.png}" />
+                      <div class="down-c">风筝线APP支持的无人机或厂商地面站集成</div>
+                    </div>
+                    <img class="pic" th:src="@{/assets/home/system_2.png}" />
+                  </div>
+                  <div class="toper-item">
+                    <div class="btn-d">第三方平台</div>
+                    <img class="pic" th:src="@{/assets/home/system_3.png}" />
+                  </div>
+                  <div class="toper-item">
+                    <div class="btn-d">云交换系统</div>
+                    <img class="pic" th:src="@{/assets/home/system_4.png}" />
+                  </div>
+                  <div class="toper-item">
+                    <div class="btn-d">气象数据</div>
+                    <img class="pic" th:src="@{/assets/home/system_5.png}" />
+                  </div>
+                  <div class="toper-item">
+                    <div class="btn-d down-btn">
+                      航空地图
+                      <img class="arr-down" th:src="@{/assets/home/arr_down.png}" />
+                      <div class="down-c">包含禁飞区、限飞区等数据</div>
+                    </div>
+                    <img class="pic" th:src="@{/assets/home/system_6.png}" />
+                  </div>
+                </div>
+                <div class="round-c">
+                  <div class="arr arr-1"></div>
+                  <div class="arr arr-2"></div>
+                  <div class="arr arr-3"></div>
+                  <div class="arr arr-4"></div>
+                  <div class="arr arr-5"></div>
+                  <div class="arr arr-6"></div>
+                  <div class="arr arr-7"></div>
+                  <div class="arr arr-8"></div>
+                  <div class="arr arr-9"></div>
+                  <div class="arr arr-10"></div>
+                  <img class="center-1" th:src="@{/assets/home/center_1.png}" />
+                  <img class="center-2" th:src="@{/assets/home/center_2.png}" />
+                  <div class="step step-1">航线规划</div>
+                  <div class="step step-2">实时监控</div>
+                  <div class="step step-3">历史回溯</div>
+                  <div class="step step-4 down-btn">
+                    成果管理
+                    <span class="arr-c-1">
+                      <img class="arr-down arr-down-1" th:src="@{/assets/home/arr_down.png}" />
+                    </span>
+                    <span class="arr-c-2">
+                      <img class="arr-down arr-down-2" th:src="@{/assets/home/arr_down_black.png}" />
+                    </span>
+                    <div class="down-c">支持全景，正射镶嵌图，三维模型的上传、展示、标注与分享</div>
+                  </div>
+                  <div class="step step-5 down-btn">
+                    AR辅助
+                    <span class="arr-c-1">
+                      <img class="arr-down arr-down-1" th:src="@{/assets/home/arr_down.png}" />
+                    </span>
+                    <span class="arr-c-2">
+                      <img class="arr-down arr-down-2" th:src="@{/assets/home/arr_down_black.png}" />
+                    </span>
+                    <div class="down-c">地图与视频结合，可直接在视频上测量距离、面积</div>
+                  </div>
+                  <div class="step step-6 down-btn">
+                    风险告警
+                    <span class="arr-c-1">
+                      <img class="arr-down arr-down-1" th:src="@{/assets/home/arr_down.png}" />
+                    </span>
+                    <span class="arr-c-2">
+                      <img class="arr-down arr-down-2" th:src="@{/assets/home/arr_down_black.png}" />
+                    </span>
+                    <div class="down-c">接近禁飞区与多架无人机接近</div>
+                  </div>
+                  <div class="step step-7">加密分享</div>
+                  <div class="step step-8">团队管理</div>
+                </div>
+                <div class="footer">
+                  <div class="footer-item">
+                    <img th:src="@{/assets/home/system_7.png}" />
+                  </div>
+                  <div class="footer-item">
+                    <img th:src="@{/assets/home/system_8.png}" />
+                  </div>
+                  <div class="footer-item">
+                    <div class="app-list">
+                      <div class="app-item">Web版</div>
+                      <div class="app-item">H5手机版</div>
+                      <div class="app-item down-btn">
+                        APP客户端
+                        <img class="arr-down" th:src="@{/assets/home/arr_down.png}" />
+                        <div class="down-c">支持安卓5.1+</div>
+                      </div>
+                      <div class="app-item down-btn">
+                        微信小程序
+                      </div>
+                    </div>
+                  </div>
+                  <div class="footer-item">
+                    <div class="api-list">
+                      <div class="api-item">国标视频平台级联</div>
+                      <div class="api-item">API接口</div>
+                      <div class="api-item">定制化</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="cloud-c">
+            <div class="mainer">
+              <a href="https://www.kitebeam.com/" target="_blank">
+                <div class="cloud-btn">
+                  访问风筝线云系统
+                  <img class="btn-pic" th:src="@{/assets/home/cloud_btn.png}" />
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <th:block th:replace="modules/footer :: footerFragment"> </th:block>
     </div>
   </body>
 </html>

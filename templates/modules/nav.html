@@ -15,10 +15,10 @@
         transition: all 0.4s ease-out;
 
         &:hover {
-          background-color: #131415;
+          background-color: #131415 !important;
         }
 
-        background: var(--backgroundColor);
+        /* background: var(--backgroundColor); */
 
         .navbar {
           height: 60px;
@@ -252,6 +252,14 @@
       ];
 
       console.log("menulist", menulist);
+      window.addEventListener('scroll', () => {
+        console.log(window.scrollY);
+        if (window.scrollY) {
+          document.querySelector('#nav').style.backgroundColor = '#131415';
+        } else {
+          document.querySelector('#nav').style.backgroundColor = 'transparent';
+        }
+      });
     </script>
   </head>
 
@@ -297,8 +305,8 @@
                 </li> -->
               <li class="nav-item">
                 <div class="nav-link menu-sub">
-                  <div th:href="@{/news}">
-                    <a>新闻中心</a>
+                  <div>
+                    <a th:href="@{/asd}">新闻中心</a>
                   </div>
                 </div>
               </li>
