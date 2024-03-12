@@ -50,6 +50,29 @@
               transform: rotate(180deg);
             }
           }
+          .navbar-collapse {
+            display: flex !important;
+            flex-basis: auto;
+            -webkit-box-flex: 1;
+            flex-grow: 1;
+            -webkit-box-align: center;
+            align-items: center;
+            .navbar-nav {
+              display: flex;
+              -webkit-box-orient: vertical;
+              -webkit-box-direction: normal;
+              flex-direction: column;
+              padding-left: 0;
+              list-style: none;
+
+              -webkit-box-orient: horizontal;
+              -webkit-box-direction: normal;
+              flex-direction: row;
+            }
+            .mr-auto,.mx-auto {
+              margin-right: auto !important;
+            }
+          }
         }
         .navbar-expand {
           flex-flow: row nowrap;
@@ -91,6 +114,9 @@
               border-bottom: 2px solid #337dfe;
             }
           }
+        }
+        .nav-link {
+          padding: 0 0.5rem;
         }
 
         .dropdown-toggle::after {
@@ -252,12 +278,12 @@
       ];
 
       console.log("menulist", menulist);
-      window.addEventListener('scroll', () => {
+      window.addEventListener("scroll", () => {
         console.log(window.scrollY);
         if (window.scrollY) {
-          document.querySelector('#nav').style.backgroundColor = '#131415';
+          document.querySelector("#nav").style.backgroundColor = "#131415";
         } else {
-          document.querySelector('#nav').style.backgroundColor = 'transparent';
+          document.querySelector("#nav").style.backgroundColor = "transparent";
         }
       });
     </script>
@@ -306,7 +332,42 @@
               <li class="nav-item">
                 <div class="nav-link menu-sub">
                   <div>
+                    <a th:href="@{/asd}">产品</a>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item">
+                <div class="nav-link menu-sub">
+                  <div>
+                    <a th:href="@{/asd}">行业应用</a>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item">
+                <div class="nav-link menu-sub">
+                  <div>
+                    <a th:href="@{/asd}">服务</a>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item">
+                <div class="nav-link menu-sub">
+                  <div>
+                    <a th:href="@{/asd}">硬件</a>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item">
+                <div class="nav-link menu-sub">
+                  <div>
                     <a th:href="@{/asd}">新闻中心</a>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item">
+                <div class="nav-link menu-sub">
+                  <div>
+                    <a th:href="@{/asd}">关于我们</a>
                   </div>
                 </div>
               </li>
