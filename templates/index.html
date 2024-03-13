@@ -1577,6 +1577,48 @@
       window.addEventListener('scroll', (value) => {
         if (window.scrollY) {
           document.querySelector('.banner').style.zIndex = -1;
+          console.log(document.querySelector('#title-1').offsetTop, window.scrollY);
+          // 处理应用动效
+          if (window.scrollY > 430 && window.scrollY < 1500) {
+            document.querySelector('#title-1').classList.add('animate');
+            document.querySelector('#intro-1').classList.add('animate');
+            document.querySelector('.num-animate-1').classList.add('animate');
+
+          } else {
+            document.querySelector('#title-1').classList.remove('animate')
+            document.querySelector('#intro-1').classList.remove('animate');
+            document.querySelector('.num-animate-1').classList.remove('animate');
+          }
+          if (window.scrollY > 880 && window.scrollY < 1900) {
+            document.querySelector('#title-2').classList.add('animate');
+            document.querySelector('#intro-2').classList.add('animate');
+            document.querySelector('.num-animate-2').classList.add('animate');
+
+          } else {
+            document.querySelector('#title-2').classList.remove('animate')
+            document.querySelector('#intro-2').classList.remove('animate');
+            document.querySelector('.num-animate-2').classList.remove('animate');
+          }
+          if (window.scrollY > 1300 && window.scrollY < 2300) {
+            document.querySelector('#title-3').classList.add('animate');
+            document.querySelector('#intro-3').classList.add('animate');
+            document.querySelector('.num-animate-3').classList.add('animate');
+
+          } else {
+            document.querySelector('#title-3').classList.remove('animate')
+            document.querySelector('#intro-3').classList.remove('animate');
+            document.querySelector('.num-animate-3').classList.remove('animate');
+          }
+          if (window.scrollY > 1700 && window.scrollY < 2700) {
+            document.querySelector('#title-4').classList.add('animate');
+            document.querySelector('#intro-4').classList.add('animate');
+            document.querySelector('.num-animate-4').classList.add('animate');
+
+          } else {
+            document.querySelector('#title-4').classList.remove('animate')
+            document.querySelector('#intro-4').classList.remove('animate');
+            document.querySelector('.num-animate-4').classList.remove('animate');
+          }
         } else {
           document.querySelector('.banner').style.zIndex = 0;
         }
